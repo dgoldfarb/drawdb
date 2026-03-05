@@ -19,11 +19,6 @@ const intRegex = /^-?\d*$/;
 const doubleRegex = /^-?\d*.?\d+$/;
 const binaryRegex = /^[01]+$/;
 
-const MYPRIMETYPE_VALUES = new Set([
-  2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71,
-  73, 79, 83, 89, 97,
-]);
-
 /* eslint-disable no-unused-vars */
 const defaultTypesBase = {
   INT: {
@@ -350,18 +345,6 @@ const defaultTypesBase = {
     isSized: false,
     hasPrecision: false,
     noDefault: true,
-  },
-  MYPRIMETYPE: {
-    type: "MYPRIMETYPE",
-    color: enumSetColor,
-    checkDefault: (field) => {
-      const n = Number.parseInt(field.default, 10);
-      return Number.isInteger(n) && MYPRIMETYPE_VALUES.has(n);
-    },
-    hasCheck: false,
-    isSized: false,
-    hasPrecision: false,
-    hasQuotes: false,
   },
 };
 
@@ -746,18 +729,6 @@ const mysqlTypesBase = {
     isSized: false,
     hasPrecision: false,
     noDefault: true,
-  },
-  MYPRIMETYPE: {
-    type: "MYPRIMETYPE",
-    color: enumSetColor,
-    checkDefault: (field) => {
-      const n = Number.parseInt(field.default, 10);
-      return Number.isInteger(n) && MYPRIMETYPE_VALUES.has(n);
-    },
-    hasCheck: false,
-    isSized: false,
-    hasPrecision: false,
-    hasQuotes: false,
   },
   GEOMETRY: {
     type: "GEOMETRY",
@@ -1429,18 +1400,6 @@ const postgresTypesBase = {
     hasQuotes: true,
     noDefault: true,
   },
-  MYPRIMETYPE: {
-    type: "MYPRIMETYPE",
-    color: enumSetColor,
-    checkDefault: (field) => {
-      const n = Number.parseInt(field.default, 10);
-      return Number.isInteger(n) && MYPRIMETYPE_VALUES.has(n);
-    },
-    hasCheck: false,
-    isSized: false,
-    hasPrecision: false,
-    hasQuotes: false,
-  },
 };
 
 export const postgresTypes = new Proxy(postgresTypesBase, {
@@ -1589,18 +1548,6 @@ const sqliteTypesBase = {
     isSized: false,
     hasPrecision: false,
     hasQuotes: true,
-  },
-  MYPRIMETYPE: {
-    type: "MYPRIMETYPE",
-    color: enumSetColor,
-    checkDefault: (field) => {
-      const n = Number.parseInt(field.default, 10);
-      return Number.isInteger(n) && MYPRIMETYPE_VALUES.has(n);
-    },
-    hasCheck: false,
-    isSized: false,
-    hasPrecision: false,
-    hasQuotes: false,
   },
 };
 
@@ -2023,18 +1970,6 @@ const mssqlTypesBase = {
     hasQuotes: true,
     noDefault: true,
   },
-  MYPRIMETYPE: {
-    type: "MYPRIMETYPE",
-    color: enumSetColor,
-    checkDefault: (field) => {
-      const n = Number.parseInt(field.default, 10);
-      return Number.isInteger(n) && MYPRIMETYPE_VALUES.has(n);
-    },
-    hasCheck: false,
-    isSized: false,
-    hasPrecision: false,
-    hasQuotes: false,
-  },
 };
 
 export const mssqlTypes = new Proxy(mssqlTypesBase, {
@@ -2264,18 +2199,6 @@ const oraclesqlTypesBase = {
     isSized: true,
     hasPrecision: false,
     defaultSize: 255,
-    hasQuotes: false,
-  },
-  MYPRIMETYPE: {
-    type: "MYPRIMETYPE",
-    color: enumSetColor,
-    checkDefault: (field) => {
-      const n = Number.parseInt(field.default, 10);
-      return Number.isInteger(n) && MYPRIMETYPE_VALUES.has(n);
-    },
-    hasCheck: false,
-    isSized: false,
-    hasPrecision: false,
     hasQuotes: false,
   },
 };
