@@ -34,7 +34,8 @@ export default function Table({
   const [hoveredField, setHoveredField] = useState(null);
   const { database } = useDiagram();
   const { layout } = useLayout();
-  const { deleteTable, deleteField, updateTable } = useDiagram();
+  const { deleteTable, deleteField, updateTable, setRelationships } =
+    useDiagram();
   const { settings } = useSettings();
   const { t } = useTranslation();
   const {
@@ -108,6 +109,16 @@ export default function Table({
     } else {
       unlockTable();
     }
+  };
+
+  const deleteAllFields = () => {
+    setRelationships((prev) =>
+      prev.filter(
+        (r) =>
+          !(r.startTableId === tableData.id || r.endTableId === tableData.id),
+      ),
+    );
+    updateTable(tableData.id, { fields: [], indices: [] });
   };
 
   const openEditor = () => {
@@ -242,6 +253,17 @@ export default function Table({
                             </div>
                           )}
                         </div>
+                        <Button
+                          icon={<IconMinus />}
+                          block
+                          style={{ marginTop: "8px" }}
+                          onClick={deleteAllFields}
+                          disabled={
+                            layout.readOnly || tableData.fields.length === 0
+                          }
+                        >
+                          {t("delete_all_fields")}
+                        </Button>
                         <Button
                           icon={<IconDeleteStroked />}
                           type="danger"
