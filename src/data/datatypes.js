@@ -18,17 +18,6 @@ import { DB } from "./constants";
 const intRegex = /^-?\d*$/;
 const doubleRegex = /^-?\d*.?\d+$/;
 const binaryRegex = /^[01]+$/;
-const positiveIntegerRegex = /^[1-9]\d*$/;
-const isMyPrimeTypeValue = (value) =>
-  positiveIntegerRegex.test(value) && Number.parseInt(value, 10) % 2 === 1;
-const myPrimeType = {
-  type: "MYPRIMETYPE",
-  color: intColor,
-  checkDefault: (field) => isMyPrimeTypeValue(field.default),
-  hasCheck: true,
-  isSized: false,
-  hasPrecision: false,
-};
 
 /* eslint-disable no-unused-vars */
 const defaultTypesBase = {
@@ -65,7 +54,6 @@ const defaultTypesBase = {
     hasPrecision: false,
     canIncrement: true,
   },
-  MYPRIMETYPE: myPrimeType,
   DECIMAL: {
     type: "DECIMAL",
     color: decimalColor,
@@ -425,7 +413,6 @@ const mysqlTypesBase = {
     canIncrement: true,
     signed: true,
   },
-  MYPRIMETYPE: myPrimeType,
   DECIMAL: {
     type: "DECIMAL",
     color: decimalColor,
@@ -879,7 +866,6 @@ const postgresTypesBase = {
       "SMALLINT",
     ],
   },
-  MYPRIMETYPE: myPrimeType,
   DECIMAL: {
     type: "DECIMAL",
     color: decimalColor,
@@ -1432,7 +1418,6 @@ const sqliteTypesBase = {
     hasPrecision: false,
     canIncrement: true,
   },
-  MYPRIMETYPE: myPrimeType,
   REAL: {
     type: "REAL",
     color: decimalColor,
@@ -1615,7 +1600,6 @@ const mssqlTypesBase = {
     hasPrecision: false,
     canIncrement: true,
   },
-  MYPRIMETYPE: myPrimeType,
   BIT: {
     type: "BIT",
     color: binaryColor,
@@ -2036,7 +2020,6 @@ const oraclesqlTypesBase = {
     hasPrecision: false,
     canIncrement: true,
   },
-  MYPRIMETYPE: myPrimeType,
   VARCHAR2: {
     type: "VARCHAR2",
     color: stringColor,
